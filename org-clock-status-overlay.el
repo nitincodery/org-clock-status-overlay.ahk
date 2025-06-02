@@ -33,16 +33,16 @@ only if clock string is available and valid."
         (message "Org clock status timer started."))
     (message "No active clock. Timer not started.")))
 
-(defun disable-org-clock-status-timer ()
-  "Disable the org-clock status timer and clear the file."
+(defun stop-org-clock-status-timer ()
+  "Stop the org-clock status timer and clear the file."
   (interactive)
   (if (timerp org-clock-status-timer)
       (progn
         (cancel-timer org-clock-status-timer)
         (setq org-clock-status-timer nil)
         (with-temp-file org-clock-status-overlay-file)
-        (message "Org clock status timer disabled and file cleared."))
+        (message "Org clock status timer stopped and file cleared."))
     (message "No org clock status timer is currently running.")))
 
 (advice-add 'org-clock-in :after #'start-org-clock-status-timer)
-(advice-add 'org-clock-out :after #'disable-org-clock-status-timer)
+(advice-add 'org-clock-out :after #'stop-org-clock-status-timer)
