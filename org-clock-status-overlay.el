@@ -44,5 +44,6 @@ only if clock string is available and valid."
         (message "Org clock status timer stopped and file cleared."))
     (message "No org clock status timer is currently running.")))
 
-(advice-add 'org-clock-in :after #'start-org-clock-status-timer)
-(advice-add 'org-clock-out :after #'stop-org-clock-status-timer)
+(add-hook 'org-clock-in-hook #'start-org-clock-status-timer)
+(add-hook 'org-clock-out-hook #'stop-org-clock-status-timer)
+
