@@ -27,7 +27,7 @@ only if clock string is available and valid."
   (interactive)
   (if-let ((clock-string (org-get-valid-clock-string)))
       (progn
-        (setq org-clock-status-timer
+        (setq org-clock-status-overlay-timer
               (run-at-time "0 sec" 30 #'write-org-clock-status))
         (write-org-clock-status)
         (message "Org clock status timer started."))
@@ -36,10 +36,10 @@ only if clock string is available and valid."
 (defun stop-org-clock-status-timer ()
   "Stop the org-clock status timer and clear the file."
   (interactive)
-  (if (timerp org-clock-status-timer)
+  (if (timerp org-clock-status-overlay-timer)
       (progn
-        (cancel-timer org-clock-status-timer)
-        (setq org-clock-status-timer nil)
+        (cancel-timer org-clock-status-overlay-timer)
+        (setq org-clock-status-overlay-timer nil)
         (with-temp-file org-clock-status-overlay-file)
         (message "Org clock status timer stopped and file cleared."))
     (message "No org clock status timer is currently running.")))
