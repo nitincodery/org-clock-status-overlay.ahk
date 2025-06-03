@@ -1,4 +1,5 @@
 #NoTrayIcon
+#SingleInstance
 ; Text Overlay Script - Displays file content in a centered, non-blocking overlay
 ; Updates every 20 seconds automatically
 
@@ -39,7 +40,7 @@ CreateGUI() {
     ; Always create GUI but only show based on visibility states
     Gui, MyOverlay:New, +AlwaysOnTop +ToolWindow -Caption +E0x08000000 -MaximizeBox -MinimizeBox
     Gui, MyOverlay:Margin, 20, 18
-    Gui, MyOverlay:Font, s14 cFFFFFF w700, Fira Code
+    Gui, MyOverlay:Font, s36 cFFFFFF w700, Fira Code
     Gui, MyOverlay:Color, 000000
     Gui, MyOverlay:Add, Text, Center BackgroundTrans gClickHide, %TextContent%
     
@@ -59,7 +60,7 @@ CreateGUI() {
         Gui, MyOverlay:Show, x%CenterX% y%CenterY% NoActivate, Text Overlay
         
         ; Apply visual effects
-        WinSet, Transparent, 140, Text Overlay
+        WinSet, Transparent, 50, Text Overlay
         WinSet, Region, 0-0 w%GuiWidth% h%GuiHeight% r40-40, Text Overlay
     }
 }
