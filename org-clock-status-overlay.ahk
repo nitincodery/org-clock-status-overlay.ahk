@@ -72,7 +72,7 @@ UpdateContent:
 return
 
 ; Toggle permanent visibility with Ctrl+Shift+T (stays hidden until used again)
-^+t::
+^+x::
     IsPermanentlyHidden := !IsPermanentlyHidden
     CreateGUI()
 return
